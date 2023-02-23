@@ -27,7 +27,7 @@ AuthRoutes.map((route) => {
 // Run the server!
 const start = async () => {
   try {
-    await fastify.listen({ port: process.env.PORT });
+    fastify.listen({ port: process.env.PORT });
     console.log(` ------> Server listening on port => ${process.env.PORT}`);
   } catch (err) {
     fastify.log.error(err);

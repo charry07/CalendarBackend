@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# NUNCA SUBIR VARIABLES DE ENTORNO
+.env
