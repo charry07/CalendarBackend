@@ -1,4 +1,4 @@
-const User = require('../models/user.model');
+const User = require('../models/user');
 const bcryptjs = require('bcryptjs');
 const { generateJWT } = require('./jwt');
 const jwt = require('jsonwebtoken');
@@ -45,11 +45,12 @@ const ValidarToken = async (request, reply) => {
   try {
     const { uid, name } = await jwt.verify(token, process.env.SECRET_JWT_SEED);
     const newToken = await generateJWT(uid, name);
-    reply.send({ message: 'Token renovado', uid, name, token: newToken });
+    request.uid = uid;
+    request.name = name;
+    reply = ({...reply, message: 'Token renovado', uid, name, token: newToken });
   } catch (error) {
     reply.status(401).send({ message: 'Token no valido' });
   }
-
 };
 
 module.exports = { registerController, loginController, ValidarToken };
