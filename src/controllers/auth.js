@@ -34,7 +34,7 @@ const loginController = async (request, reply) => {
   const token = await generateJWT(findUser.id, findUser.name);
 
   validPassword && findUser
-    ? reply.send({ message: 'Login Successfully', user: request.body, token })
+    ? reply.send({ message: 'Login Successfully', user: findUser, token })
     : reply.status(400).send({ message: 'Error verifica el email y o la contrasena' });
 };
 
