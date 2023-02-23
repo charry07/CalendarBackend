@@ -2,17 +2,17 @@ const { registerController, loginController, ValidarToken } = require('../contro
 
 const AuthRoutes = [
   {
-    url: '/auth/register',
+    url: '/api/auth/register',
     method: 'POST',
     handler: registerController,
   },
   {
-    url: '/auth/login',
+    url: '/api/auth/login',
     method: 'POST',
     handler: loginController,
   },
   {
-    url: '/auth/renewToken',
+    url: '/api/auth/renewToken',
     method: 'GET',
     handler: ValidarToken,
   },

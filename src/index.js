@@ -2,13 +2,21 @@ require('dotenv').config();
 const CalendarRoutes = require('./routes/calendar.routes');
 const AuthRoutes = require('./routes/auth.routes');
 const dbConnection = require('./utils/mongoose');
+const cors = require('@fastify/cors')
 
 const fastify = require('fastify')({
   // logger: true,
 });
 
+// Enable CORS
+fastify.register(cors, {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+});
+
 //Base de datos
-dbConnection()
+dbConnection();
 
 // Declare a route
 fastify.get('/', async (request, reply) => {
