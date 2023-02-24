@@ -10,7 +10,7 @@ const CalendarRoutes = [
     handler: async (request, reply) => {
       try {
         const events = await Evento.find().populate('user' , 'name email');
-        reply.send({ message: 'Aqui van todos los eventos' , events });
+        reply.send(events);
       } catch (error) {
         reply.status(500).send({ message: error });
       }
@@ -23,7 +23,7 @@ const CalendarRoutes = [
     handler: async (request, reply) => {
       try {
         const event = await Evento.findById(request.params.id);
-        reply.send({ message: `Evento #${request.params.id}`, event });
+        reply.send(event);
       } catch (error) {
         reply.status(500).send({ message: error });
       }
@@ -38,7 +38,7 @@ const CalendarRoutes = [
       try {
         event.user = request.uid;
         const eventGuardado = await event.save();
-        reply.send({ message: 'Evento Creado!', eventGuardado });
+        reply.send(eventGuardado);
       } catch (error) {
         reply.status(500).send({ message: error });
       }

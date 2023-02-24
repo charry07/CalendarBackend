@@ -1,4 +1,4 @@
-const { registerController, loginController, ValidarToken } = require('../controllers/auth');
+const { registerController, loginController, renewValidarToken } = require('../controllers/auth');
 
 const AuthRoutes = [
   {
@@ -14,7 +14,7 @@ const AuthRoutes = [
   {
     url: '/api/auth/renewToken',
     method: 'GET',
-    handler: ValidarToken,
+    handler: renewValidarToken,
   },
 ];
 

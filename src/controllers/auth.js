@@ -52,5 +52,19 @@ const ValidarToken = async (request, reply) => {
     reply.status(401).send({ message: 'Token no valido' });
   }
 };
+const renewValidarToken = async (request, reply) => {
+  const token = request.headers['x-token'];
+  if (!token) return reply.status(401).send({ message: 'No hay token en la peticion' });
 
-module.exports = { registerController, loginController, ValidarToken };
+  try {
+    const { uid, name } = await jwt.verify(token, process.env.SECRET_JWT_SEED);
+    const newToken = await generateJWT(uid, name);
+    request.uid = uid;
+    request.name = name;
+    reply.status(200).send({message: 'Token renovado', uid, name, token: newToken });
+  } catch (error) {
+    reply.status(401).send({ message: 'Token no valido' });
+  }
+};
+
+module.exports = { registerController, loginController, ValidarToken , renewValidarToken };
