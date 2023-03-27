@@ -1,15 +1,21 @@
 const { ValidarToken } = require('../controllers/auth');
 const Evento = require('../models/event');
 
-
 const CalendarRoutes = [
+  {
+    url: '/',
+    method: 'GET',
+    handler: (request, reply) => {
+      reply.send({ message: 'Bienvenido a la API de Calendar'  });
+    },
+  },
   {
     url: '/api/events',
     method: 'GET',
     preHandler: (request, reply) => ValidarToken(request, reply), // funciona como un middleware
     handler: async (request, reply) => {
       try {
-        const events = await Evento.find().populate('user' , 'name email');
+        const events = await Evento.find().populate('user', 'name email');
         reply.send(events);
       } catch (error) {
         reply.status(500).send({ message: error });

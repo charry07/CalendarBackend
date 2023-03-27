@@ -2,7 +2,7 @@ require('dotenv').config();
 const CalendarRoutes = require('./routes/calendar.routes');
 const AuthRoutes = require('./routes/auth.routes');
 const dbConnection = require('./utils/mongoose');
-const cors = require('@fastify/cors')
+const cors = require('@fastify/cors');
 
 const fastify = require('fastify')({
   // logger: true,
@@ -18,10 +18,10 @@ fastify.register(cors, {
 //Base de datos
 dbConnection();
 
-// Declare a route
-fastify.get('/', async (request, reply) => {
-  reply.send({ port: process.env.PORT });
-});
+// // Declare a route
+// fastify.get('/', async (request, reply) => {
+//   reply.send({ Msg: 'Bienvenido al Api Calendar', port: process.env.PORT });
+// });
 
 // mapeo las rutas y despues con el fastify.route las lanzo
 CalendarRoutes.map((route) => {
