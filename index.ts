@@ -11,8 +11,9 @@ const fastify = require('fastify')({
 // Enable CORS
 fastify.register(cors, {
   origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
+  allowedHeaders: ['Authorization', 'Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 });
 
 //Base de datos
@@ -30,8 +31,8 @@ AuthRoutes.map((route: any) => {
 // Run the server!
 const start = async () => {
   try {
-    fastify.listen({ port: process.env.PORT });
-    console.log(` ------> Server listening on port => ${process.env.PORT}`);
+    fastify.listen({ host: process.env.HOST || '0.0.0.0', port: process.env.PORT });
+    console.log(` ------> Server listening on port => [${process.env.PORT}]`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
