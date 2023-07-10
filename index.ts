@@ -19,11 +19,11 @@ fastify.register(cors, {
 dbConnection();
 
 // mapeo las rutas y despues con el fastify.route las lanzo
-CalendarRoutes.map((route) => {
+CalendarRoutes.map((route: any) => {
   fastify.route(route);
 });
 
-AuthRoutes.map((route) => {
+AuthRoutes.map((route: any) => {
   fastify.route(route);
 });
 
