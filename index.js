@@ -1,7 +1,7 @@
 require('dotenv').config();
-const CalendarRoutes = require('./routes/calendar.routes');
-const AuthRoutes = require('./routes/auth.routes');
-const dbConnection = require('./utils/mongoose');
+const CalendarRoutes = require('./src/routes/calendar.routes');
+const AuthRoutes = require('./src/routes/auth.routes');
+const dbConnection = require('./src/utils/mongoose');
 const cors = require('@fastify/cors');
 
 const fastify = require('fastify')({
