@@ -1,11 +1,6 @@
 # Use the official Node.js 18 image from Docker Hub
 FROM node:18
 
-# Add variable .env to the container environment variables (optional)  
-ENV PORT=3001
-ENV MONGODB_CNN=mongodb+srv://charry07:Charryto-07@clusteracn.j3bdj.mongodb.net/Calendar
-ENV SECRET_JWT_SEED=aquiTieenQueIrUnaFraseSecretaPeroestasirve
-
 # Create and change to the app directory
 WORKDIR /app            
 
