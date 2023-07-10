@@ -18,11 +18,6 @@ fastify.register(cors, {
 //Base de datos
 dbConnection();
 
-// // Declare a route
-// fastify.get('/', async (request, reply) => {
-//   reply.send({ Msg: 'Bienvenido al Api Calendar', port: process.env.PORT });
-// });
-
 // mapeo las rutas y despues con el fastify.route las lanzo
 CalendarRoutes.map((route) => {
   fastify.route(route);
